@@ -1,0 +1,44 @@
+package day24;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class HandleInnerFrames {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver=new ChromeDriver();
+		
+		driver.get("https://ui.vision/demo/webtest/frames/");
+		driver.manage().window().maximize();
+		
+		//Frame1
+		WebElement frame1=driver.findElement(By.xpath("//frame[@src='frame_1.html']"));
+		driver.switchTo().frame(frame1);
+		driver.findElement(By.xpath("//input[@name='mytext1']")).sendKeys("1111111");
+
+		driver.switchTo().defaultContent(); // go back to main page
+		
+		//Frame3
+		WebElement frame3=driver.findElement(By.xpath("//frame[@src='frame_3.html']"));
+		driver.switchTo().frame(frame3);
+		driver.findElement(By.xpath("//input[@name='mytext3']")).sendKeys("33333333");
+		
+		driver.switchTo().frame(0);  // switch to inner frame
+		
+		driver.findElement(By.cssSelector("div.AB7Lab")).click(); // first radio button
+		
+		driver.switchTo().defaultContent();  // main page
+		
+		//Frame2
+				
+		//Frame4
+		
+		//Frame5
+		
+		
+	}
+
+}
